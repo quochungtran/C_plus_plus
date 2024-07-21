@@ -1,58 +1,36 @@
-/**
- * codeforce: GukiZ and Contest
- * 
- */
-
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <map>
 
 using namespace std;
+const int MAX = 2005;
 
-map<int, vector<int>, greater<int>> construit_map(vector<int>& arr){
-    
-    map<int, vector<int>, greater<int>> mp;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        mp[arr[i]].push_back(i);
-    }
-
-    return mp;
-}
-
-vector<int> build_rating(map<int, vector<int>, greater<int>>& mp, vector<int>& arr)
-{
-    vector<int> res(arr.size()); 
-    int pos = 1;
-
-    for (auto [k, v]: mp)
-    {
-        for (auto id : v)
-        {
-            res[id] = pos;
-        }
-        pos += v.size();
-    }
-
-    return res;
-}
+int ranked[MAX];
 
 int main() {
-    int n;
+
+    int n, rating;
     cin >> n;
-    vector<int> arr(n);
-    for (int i = 0; i < n; ++i) {
-        cin >> arr[i];
+    vector<int> ratings(n), sorted_ratings(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> rating;
+        ratings[i] = sorted_ratings[i] = rating;
     }
 
-    auto mp  = construit_map(arr);    
-    auto res = build_rating(mp, arr);
+    sort(sorted_ratings.begin(), sorted_ratings.end(), greater<int>());
 
-    for (auto e : res)
-    {
-        cout << e << " ";
+    for (int i = 0; i < n; i++) {
+        rating = sorted_ratings[i];
+
+        if (!ranked[rating]) {
+            ranked[rating] = i + 1;
+        }
     }
+
+    for (int& rating : ratings) {
+        cout << ranked[rating] << " ";
+    }
+
     return 0;
 }

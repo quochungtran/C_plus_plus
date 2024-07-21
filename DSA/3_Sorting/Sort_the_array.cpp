@@ -50,6 +50,43 @@ void can_sort_by_reversing_subsegment(int n, vector<int>& a) {
     }
 }
 
+int can_sort(int n; vector<int>& a)
+{
+    int n;
+    cin >> n;
+    vector<int> a(n), sorted_a(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        sorted-a = a[i];
+    }
+
+    sort(sorted_a.begin(), sorted_a.end());
+    int l  = 0, r = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] != sorted_a[i])
+        {
+            l = i;
+            break;
+        }
+    }
+
+    for (int i = n-1; i >=0 ; i--)
+    {
+        if (a[i] != sorted_a[i])
+        {
+            r = i;
+            break;
+        }
+    }
+
+    reverse(a.begin() + l, a.begin() + r  + 1);
+    return a != sorted_a;
+}
+
 int main() {
     int n;
     cin >> n;

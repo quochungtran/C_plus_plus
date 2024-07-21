@@ -1,3 +1,6 @@
+// Complexity : O(Elog(V))
+// E : number of verticals, V : number of verticals
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -49,14 +52,12 @@ void Disjkstra(int s)
         auto [u, w] = pq.top();
         pq.pop();
 
-        for (int i = 0; i < graph[u].size(); ++i)
+        for (auto neighbor : graph[u])
         {
-            auto neighbor = graph[u][i];
             if (w + neighbor.second < dist[neighbor.first])
             {
                 dist[neighbor.first] = w + neighbor.second;
                 pq.push(pair<int, int>(neighbor.first, dist[neighbor.first]));
-                path[neighbor.first] = u;
             }
         }
     }

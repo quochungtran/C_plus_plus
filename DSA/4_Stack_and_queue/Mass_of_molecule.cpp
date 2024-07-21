@@ -1,74 +1,49 @@
-/**
- * codeforce: Throwing_cards_away_I
- * 
- */
-
 #include <iostream>
-#include <vector>
-#include <algorithm>
 #include <stack>
 #include <string>
-#include <queue>
-#include<unordered_map>
-#include<cctype>
-
 using namespace std;
 
-bool isUpperCaseAlphabet(char c) {
-    return c >= 'A' && c <= 'Z';
+int mass(char c){
+    return c == 'H' ? 1 : (c == 'C' : 12 ? 16);
 }
 
-int main() {
-    
+int main()
+{
     string s;
-    getline(cin, s);
+    cin >> s;
 
-    int i = 0;
-    int n  = s.size() ;
-    stack<char> st;
+    int queue<int> q;
+    int 
 
-    unordered_map<char, int> mass{{'C', 12}, {'H', 1}, {'O', 16}};
-
-    int res = 0;
-
-    while(i <= n-1)
+    for (auto c : s)
     {
-        if (s[i] != ')')
+        if (isalpha(c))
         {
-            st.push(s[i]);
-            cout << st.top() << " ,";
+            st.push(mass(c));
         }
-        else //if (s[i] == ')')
+        if (isdigit(c))
         {
-            int ele = 0;
-            while(!st.empty() && st.top() != '(')
-            {
-                if (isUpperCaseAlphabet(s[i]))
-                {
-                    ele += mass[st.top()];
-                    st.pop();
-                }
-
-                // if (isalpha(s[i]))
-                // {
-                //     int factor = st.top() - '0';
-                //     st.pop();
-                //     ele += st.top() * factor;
-                // }
-
-            }
+            mass += (c - '0') * st.top();
             st.pop();
-
-            if (i+1 <= n-1 && isalpha(s[i+1]))
-            {
-                ele = ele * s[i+1];
-                i++;
-            }
         }
-        i++;
+        else if (c == '(')
+        {
+            st.push(-1);
+        }
+        else if (c == ')')
+        {
+            w = 0;
+            while(st.top() == -1)
+            {
+                auto val = st.top();
+                w += val;
+                st.pop();
+            }
+
+            weight += w;
+            st.pop();
+        }
     }
 
-    cout << res;
-
-    return 0;
+    cout << weight << endl;
 }
