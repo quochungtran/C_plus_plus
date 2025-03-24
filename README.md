@@ -1,3 +1,5 @@
+The repo aims to self-learn C++20 
+
 # Prerequisites
 
 Before you begin, make sure you have the following tools installed on your Linux system:
