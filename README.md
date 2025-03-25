@@ -1,12 +1,12 @@
 The repo aims to self-learn C++20 
 
-# Prerequisites
+### Prerequisites
 
 Before you begin, make sure you have the following tools installed on your Linux system:
 
 - **CMake**: CMake is a cross-platform software used to manage the build process of source code. It enables the generation of native compilation rules under both Linux and Windows using common build scripts.
 
-# Build Process
+### Build Process
 
 To compile the project, follow these steps:
 

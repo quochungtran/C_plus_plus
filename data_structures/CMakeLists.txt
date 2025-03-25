@@ -17,7 +17,7 @@ macro(SOURCE_BUILDER filename)
         set_target_properties(${_target} PROPERTIES COMPILE_FLAGS "-g ${COMPILE_WARNS_FLAGS}")
     endif()
 
-    install(TARGETS ${_target} DESTINATION "data_structure")
+    install(TARGETS ${_target} DESTINATION "data_structures")
 
 endmacro()
 
