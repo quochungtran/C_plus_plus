@@ -24,5 +24,5 @@ cd build
 $CMAKE_BIN .. \
     -DCMAKE_BUILD_TYPE=Debug \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-    -DCMAKE_INSTALL_PREFIX=../bin \
     -G"Unix Makefiles"
+    # -DCMAKE_INSTALL_PREFIX=../bin \
