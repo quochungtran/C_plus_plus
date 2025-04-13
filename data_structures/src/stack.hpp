@@ -1,7 +1,6 @@
 #ifndef DATA_STRUCTURES_STACK_HPP_
 #define DATA_STRUCTURES_STACK_HPP_
 
-
 #include "node.hpp"
 #include <stdexcept>  /// for std::invalid_argument
 
@@ -15,11 +14,13 @@ public:
     bool isEmptyStack() const {return (stackTop == nullptr);}
 
     void push(const value_type& item){
-        auto newNode = std::make_shared<Node<value_type>>();
-        newNode->data = item;
-        newNode->next = stackTop;
+        auto newNode = std::make_shared<Node<value_type>>(item, stackTop);
         stackTop = newNode;
         _size++;
+    }
+
+    std::size_t getSize() const{
+        return _size;
     }
 
     void pop() {

@@ -5,12 +5,16 @@
 #include <memory>
 #include <vector> 
 
+namespace data_structure{
 template  <class ValueType>
 struct Node
 {
     using node_type = ValueType;
     ValueType data = {};
     std::shared_ptr<Node<ValueType>> next = {};
+
+    Node(const ValueType& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
+    : data(value), next(nextNode){}
 };
 
 template <typename Node, typename Action>
@@ -26,5 +30,5 @@ void display_all(const Node* const inNode){
     traverse(inNode,
             [](const Node& curNode){std::cout << curNode.data << " ";});
 }
-
+}
 #endif  // DATA_STRUCTURES_NODE_HPP_
