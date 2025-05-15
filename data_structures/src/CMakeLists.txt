@@ -1,5 +1,7 @@
 # Define a macro to create an executable from a given .cpp filename
 # to build a src binary in bin folder
+set(MODULE data_structures)
+
 macro(SOURCE_BUILDER filename)
 
     get_filename_component(_target "${filename}" NAME_WE)
@@ -18,6 +20,6 @@ macro(SOURCE_BUILDER filename)
         set_target_properties(${_target} PROPERTIES COMPILE_FLAGS "-g ${COMPILE_WARNS_FLAGS}")
     endif()
 
-    install(TARGETS ${_target} DESTINATION "data_structures")
+    install(TARGETS ${_target} DESTINATION ${MODULE})
 
 endmacro()
