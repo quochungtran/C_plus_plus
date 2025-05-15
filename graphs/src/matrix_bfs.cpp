@@ -10,7 +10,8 @@ struct Pos
 {
     int x;
     int y;
-    Pos(int x, int y) : x(x), y(y){}
+    int distance;
+    Pos(int x, int y, int distance=0) : x(x), y(y), distance(distance){}
 
     bool operator==(const Pos& iPos) const {return iPos.x == x && iPos.y == y;}
 };
