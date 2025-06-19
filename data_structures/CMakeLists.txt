@@ -5,7 +5,7 @@ SET(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/node.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/stack.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/stackUsingArray.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/stackUsingArray.cpp
 )
 
 # Define a static library target with the given sources
