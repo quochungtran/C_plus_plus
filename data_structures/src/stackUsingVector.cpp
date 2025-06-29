@@ -2,14 +2,10 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <stack.hpp>
 
 namespace datastructure
 {
-/**
- * @brief Class datastructure of a stack
- * @param T the type of elements in the stack
- */
-
 template <typename T>
 class StackUsingArray {
 public:

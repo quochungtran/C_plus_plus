@@ -13,6 +13,8 @@ class Stack{
     virtual void push(const T& iValue)                        = 0;
     virtual void push(const T&& iValue)                       = 0;
     virtual T pop() const                                     = 0;
+    virtual const T& top() const                              = 0;
+    virtual void clear()                                      = 0;
     virtual std::ostream& toStream(std::ostream& ioOut) const = 0;
 };
 
