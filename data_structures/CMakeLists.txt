@@ -3,9 +3,10 @@ set(MODULE data_structures)
 
 SET(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/node.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/stack.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/log.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/stack.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/stackUsingArray.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/stack_using_single_list.hpp
 )
 
 # Define a static library target with the given sources

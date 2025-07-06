@@ -23,3 +23,5 @@ macro(SOURCE_BUILDER filename)
     install(TARGETS ${_target} DESTINATION ${MODULE})
 
 endmacro()
+
+SOURCE_BUILDER(log.cpp)
