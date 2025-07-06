@@ -3,7 +3,7 @@
 #include <memory>
 #include <stdexcept>
 #include <stack.h>
-
+#include "node.hpp"
 namespace data_structure
 {
 template <typename T>
@@ -23,12 +23,12 @@ public:
     }
 
     void push(const T& iValue) override{
-        _head = std::make_shared<listNode> (iValue, _head);
+        _head = std::make_shared<Node> (iValue, _head);
         _size++;
     }
 
     void push(const T&& iValue) override{
-        _head = std::make_shared<listNode> (std::move(iValue),_head);
+        _head = std::make_shared<Node> (std::move(iValue),_head);
         _size++;
     }
 
@@ -70,16 +70,16 @@ public:
     }
 private:
 
-    struct listNode
+    struct Node
     {
         T data;
-        std::shared_ptr<listNode> next;
+        std::shared_ptr<Node> next;
 
-        explicit listNode(T iValue, std::shared_ptr<listNode> nextlistNode = nullptr)
-            : data(std::move(iValue)), next(std::move(nextlistNode)){}
+        explicit Node(T iValue, std::shared_ptr<Node> nextNode = nullptr)
+            : data(std::move(iValue)), next(std::move(nextNode)){}
     };
     
-    std::shared_ptr<listNode> _head = nullptr;
+    std::shared_ptr<Node> _head = nullptr;
     std::size_t _size = 0;
 };
 } // namespace datastructure
