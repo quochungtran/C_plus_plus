@@ -11,10 +11,14 @@ struct Node
 {
     using node_type = ValueType;
     ValueType data = {};
-    std::shared_ptr<Node<ValueType>> next = {};
+    std::shared_ptr<Node<node_type>> next = {};
 
-    Node(const ValueType& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
-    : data(value), next(nextNode){}
+    Node(const node_type& value, std::shared_ptr<Node<node_type>> nextNode = nullptr)
+    : data((value)), next(std::move(nextNode)){}
+
+    template<typename U>
+    explicit Node(U&& value, std::shared_ptr<Node<node_type>> nextNode = nullptr)
+        : data(std::forward<U>(value)), next(std::move(nextNode)) {}
 };
 
 template <typename Node, typename Action>

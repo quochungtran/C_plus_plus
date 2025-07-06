@@ -5,7 +5,8 @@
 using namespace data_structure;
 
 // Helper function to collect output of display_all
-std::string get_display_output(const std::shared_ptr<Node<int>>& head) {
+template <typename T>
+std::string get_display_output(const std::shared_ptr<Node<T>>& head) {
     std::ostringstream oss;
     std::streambuf* oldCout = std::cout.rdbuf();
     std::cout.rdbuf(oss.rdbuf());
@@ -21,6 +22,20 @@ TEST(NodeTest, EmptyNodeTest) {
     std::string output = get_display_output(nullNode);
     EXPECT_EQ(output, "");
 }
+
+TEST(NodeTest, TestMoveSemanticsWithString) {
+    std::string str = "hello";
+
+    auto node = std::make_shared<Node<std::string>>(std::move(str));
+
+    auto output = get_display_output(node);
+    EXPECT_EQ(output, "hello ");
+
+    // This now verifies that str has been moved from
+    EXPECT_TRUE(str.empty()) << "Expected 'str' to be empty after move, got: '" << str << "'";
+}
+
+
 
 TEST(NodeTest, SingleNodeTest){
     auto node = std::make_shared<Node<int>>(12);
