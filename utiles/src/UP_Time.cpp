@@ -1,9 +1,8 @@
 #include "UP_Time.h"
 
-using namespace utiles;
 #include <iostream>
 
-
+namespace utiles {
 UP_Time::UP_Time(): timePoint(std::chrono::system_clock::now()){};
 
 UP_Time UP_Time::Now()
@@ -34,9 +33,11 @@ UP_Time UP_Time::addMinutes(int minutes) const
 UP_Time UP_Time::addHours(int hours) const{
     return addSeconds(hours*3600);
 }
+}
 
 int main()
 {
+    using namespace utiles;
     UP_Time now = UP_Time::Now();
     std::cout << now.asString() << "\n";
     return 0;

@@ -1,9 +1,0 @@
-libdir=/home/quochungtran/Desktop/git_repo/C++/bin/lib
-includedir=/home/quochungtran/Desktop/git_repo/C++/bin/include
-
-Name: FlatBuffers
-Description: Memory Efficient Serialization Library
-Version: 25.2.10
-
-Libs: -L${libdir} -lflatbuffers
-Cflags: -I${includedir}
