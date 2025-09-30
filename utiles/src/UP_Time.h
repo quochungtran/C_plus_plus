@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURES_STACK_HPP_
-#define DATA_STRUCTURES_STACK_HPP_
+#ifndef UP_TIME_H_
+#define UP_TIME_H_
 
 #include <string>
 #include <chrono>
@@ -21,4 +21,4 @@ private:
 };
 } // namespace utiles
 
-#endif  // DATA_STRUCTURES_STACK_HPP_
+#endif  // UP_TIME_H_

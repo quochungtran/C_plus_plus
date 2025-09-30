@@ -1,6 +1,7 @@
 # List of source files for the data_structures_lib
 SET(DS_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/UP_Time.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/processMearsure.cpp
 )
 
 # Define a static library target with the given sources

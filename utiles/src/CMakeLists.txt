@@ -22,4 +22,6 @@ macro(SOURCE_BUILDER filename)
 
 endmacro()
 
+# build CLI
 SOURCE_BUILDER(UP_Time.cpp)
+SOURCE_BUILDER(processMearsure.cpp)
