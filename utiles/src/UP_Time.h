@@ -11,11 +11,7 @@ public:
     UP_Time();
     static UP_Time Now();
     std::string asString(const std::string& format = "%F %T") const;
-
-    UP_Time addSeconds(int seconds) const;
-    UP_Time addMinutes(int minutes) const;
-    UP_Time addHours(int hours) const;
-
+    
     // Arithmetic operations
     template <typename Duration>
     UP_Time operator+(const Duration& duration) const;

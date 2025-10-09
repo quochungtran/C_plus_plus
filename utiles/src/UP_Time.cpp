@@ -18,21 +18,6 @@ std::string UP_Time::asString(const std::string& format) const{
     return std::string(buffet); 
 }
 
-UP_Time UP_Time::addSeconds(int second) const{
-    UP_Time result;
-    result.timePoint = timePoint + std::chrono::seconds(second);
-    return result;
-}
-
-UP_Time UP_Time::addMinutes(int minutes) const
-{
-    return addSeconds(minutes*60);
-}
-
-UP_Time UP_Time::addHours(int hours) const{
-    return addSeconds(hours*3600);
-}
-
 template <typename Duration>
 UP_Time UP_Time::operator+(const Duration& duration) const {
     UP_Time result;
