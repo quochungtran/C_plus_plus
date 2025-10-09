@@ -16,6 +16,13 @@ public:
     UP_Time addMinutes(int minutes) const;
     UP_Time addHours(int hours) const;
 
+    // Arithmetic operations
+    template <typename Duration>
+    UP_Time operator+(const Duration& duration) const;
+
+    template <typename Duration>
+    UP_Time operator-(const Duration& duration) const;
+    
 private:
     std::chrono::system_clock::time_point timePoint;
 };

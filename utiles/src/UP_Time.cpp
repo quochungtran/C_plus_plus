@@ -32,6 +32,20 @@ UP_Time UP_Time::addMinutes(int minutes) const
 UP_Time UP_Time::addHours(int hours) const{
     return addSeconds(hours*3600);
 }
+
+template <typename Duration>
+UP_Time UP_Time::operator+(const Duration& duration) const {
+    UP_Time result;
+    result.timePoint = timePoint + duration;
+    return result;
+}
+
+template <typename Duration>
+UP_Time UP_Time::operator-(const Duration& duration) const{
+    UP_Time result;
+    result.timePoint = timePoint - duration;
+    return result; 
+}
 }
 
 int main()
@@ -39,5 +53,12 @@ int main()
     using namespace utiles;
     UP_Time now = UP_Time::Now();
     std::cout << now.asString() << "\n";
+    
+    auto later_5_mins  = now + std::chrono::minutes(5);
+    auto ealier_5_mins = now - std::chrono::minutes(5);
+
+    std::cout  << "Now     " << later_5_mins.asString() << "\n";
+    std::cout  << "Ealier  " << ealier_5_mins.asString() << "\n";
+
     return 0;
 }
