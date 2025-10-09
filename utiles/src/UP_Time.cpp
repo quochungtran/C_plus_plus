@@ -32,18 +32,3 @@ UP_Time UP_Time::operator-(const Duration& duration) const{
     return result; 
 }
 }
-
-int main()
-{
-    using namespace utiles;
-    UP_Time now = UP_Time::Now();
-    std::cout << now.asString() << "\n";
-    
-    auto later_5_mins  = now + std::chrono::minutes(5);
-    auto ealier_5_mins = now - std::chrono::minutes(5);
-
-    std::cout  << "Now     " << later_5_mins.asString() << "\n";
-    std::cout  << "Ealier  " << ealier_5_mins.asString() << "\n";
-
-    return 0;
-}

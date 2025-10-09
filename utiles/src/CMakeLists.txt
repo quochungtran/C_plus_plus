@@ -7,6 +7,9 @@ macro(SOURCE_BUILDER filename)
 
     # Define the executable
     add_executable(${_target} ${${_target}_SRCS})
+    
+    # Link to the utiles library
+    target_link_libraries(${_target} PRIVATE utiles_lib)
 
     # Set output name of the executable
     set_target_properties(${_target} PROPERTIES OUTPUT_NAME ${_target})
@@ -23,5 +26,4 @@ macro(SOURCE_BUILDER filename)
 endmacro()
 
 # build CLI
-SOURCE_BUILDER(UP_Time.cpp)
-SOURCE_BUILDER(processMearsure.cpp)
+SOURCE_BUILDER(processMearsure_cli.cpp)

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <functional>
+#include "logging.h"
 
 #include "UP_Time.h"
 
@@ -19,25 +20,9 @@ public:
                 
         long long elapsed = 0;
         elapsed = std::chrono::duration_cast<timeType>(end-start).count();
-
-        std::cout << "Execution time: " << elapsed << "\n";
+        LOG(LogLevel::INFO, "Execution Time " << elapsed);
         return result;
     }
 };
 
 } // namespace utiles
-
-
-int main()
-{
-    using namespace utiles;
-    auto sumLambda = [](int n){
-        long long sum = 0;
-        for (int i = 0; i < n; i++){
-            sum += i;
-        }
-        return sum;
-    };
-    Timer<std::chrono::microseconds>::measure(sumLambda, 10000000000);
-    return 0;
-}
