@@ -21,6 +21,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 add_subdirectory(data_structures)
+add_subdirectory(competitve_programming)
 add_subdirectory(utiles)
 add_subdirectory(lib/googletest)
 add_subdirectory(flatbuffers)
