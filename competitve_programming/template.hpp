@@ -52,6 +52,12 @@ auto _print(const Container& c) -> decltype(c.begin(), c.end(), void()) {
     cout << "]";
 }
 
+template<class T>
+void print(const T& val) {
+    _print(val);
+    cout << "\n";
+}
+
 // ----------------------- sort --------------------------
 template<class T>
 void sortArray(vector<T>& a){
@@ -59,22 +65,15 @@ void sortArray(vector<T>& a){
 }
 
 
-// template to add a new solution
-
-/**
-void solve() {
-    // write your code here
-    return;
-}
+void solve();
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     int t;
-    cin >> t;
+    in(t);
 
     while(t--){
         solve();
     }
-} 
- */
+}

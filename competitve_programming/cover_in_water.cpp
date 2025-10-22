@@ -21,15 +21,5 @@ void solve() {
             return;
         }
     }        
-    _print(count);
-}
-
-
-int main() {
-    FAST_IO
-    int t;
-    in(t);
-    while(t--){
-        solve();
-    }
+    print(count);
 }

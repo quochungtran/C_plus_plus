@@ -13,15 +13,5 @@ void solve() {
     minimumGas = max(minimumGas, abs(a[0]));
     minimumGas = max(minimumGas, 2*abs(x-a[n-1]) );
 
-    _print(minimumGas);
-}
-
-
-int main() {
-    FAST_IO
-    int t;
-    in(t);
-    while(t--){
-        solve();
-    }
+    print(minimumGas);
 }

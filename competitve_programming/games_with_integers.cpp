@@ -5,16 +5,7 @@ void solve() {
     in(n);
     
     if (n%3 == 0)
-        _print("Second");
+        print("Second");
     else
-        _print("First");
-}
-
-int main() {
-    FAST_IO
-    int t;
-    in(t);
-    while(t--){
-        solve();
-    }
+        print("First");
 }
