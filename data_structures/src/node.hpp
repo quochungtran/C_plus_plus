@@ -9,15 +9,14 @@ namespace data_structure{
 template  <class ValueType>
 struct Node
 {
-    using node_type = ValueType;
     ValueType data = {};
-    std::shared_ptr<Node<node_type>> next = {};
+    std::shared_ptr<Node<ValueType>> next = {};
 
-    Node(const node_type& value, std::shared_ptr<Node<node_type>> nextNode = nullptr)
+    Node(const node_type& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
     : data((value)), next(std::move(nextNode)){}
 
     template<typename U>
-    explicit Node(U&& value, std::shared_ptr<Node<node_type>> nextNode = nullptr)
+    explicit Node(U&& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
         : data(std::forward<U>(value)), next(std::move(nextNode)) {}
 };
 
