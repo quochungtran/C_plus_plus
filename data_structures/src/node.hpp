@@ -12,7 +12,7 @@ struct Node
     ValueType data = {};
     std::shared_ptr<Node<ValueType>> next = {};
 
-    Node(const node_type& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
+    Node(const ValueType& value, std::shared_ptr<Node<ValueType>> nextNode = nullptr)
     : data((value)), next(std::move(nextNode)){}
 
     template<typename U>
