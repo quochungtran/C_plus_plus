@@ -41,3 +41,13 @@ TEST_F(StackUsingSingleListTest, pushListTest){
     stk.clear();
     EXPECT_TRUE(stk.isEmpty());
 }
+
+TEST_F(StackUsingSingleListTest, toStreamTest){
+    stk.push(3);
+    stk.push(12);
+    int x = 100;
+    stk.push(x);
+    std::ostringstream oss;
+    stk.toStream(oss);
+    EXPECT_EQ(oss.str(), "[100,12,3]");
+}

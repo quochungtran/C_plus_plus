@@ -27,8 +27,8 @@ public:
         _size++;
     }
 
-    void push(const T&& iValue) override{
-        _head = std::make_shared<Node> (std::move(iValue),_head);
+    void push(T&& iValue) override{
+        _head = std::make_shared<Node> (std::move(iValue), _head);
         _size++;
     }
 

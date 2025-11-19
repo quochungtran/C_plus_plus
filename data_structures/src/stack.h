@@ -12,7 +12,7 @@ public:
     virtual std::size_t getSize() const                       = 0;
     virtual bool isEmpty() const                              = 0;
     virtual void push(const T& iValue)                        = 0;
-    virtual void push(const T&& iValue)                       = 0;
+    virtual void push(T&& iValue)                             = 0;
     virtual T pop()                                           = 0;
     virtual const T& top() const                              = 0;
     virtual void clear()                                      = 0;
