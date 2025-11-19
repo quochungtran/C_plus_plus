@@ -6,6 +6,7 @@ SET(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/log.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/stack.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/stack_using_single_list.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/vector.hpp
 )
 
 # Define a static library target with the given sources
