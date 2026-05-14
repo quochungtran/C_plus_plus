@@ -1,10 +1,7 @@
-set(MODULE data_structures)
+set(MODULE utiles)
 
-# Collect test source files
-file(GLOB_RECURSE DS_TEST_FILES CONFIGURE_DEPENDS *.cpp *.hpp)
+file(GLOB_RECURSE UTILES_TEST_FILES CONFIGURE_DEPENDS *.cpp *.hpp)
 
-# Build test executable
-add_executable(${MODULE}_tests ${DS_TEST_FILES})
+add_executable(${MODULE}_tests ${UTILES_TEST_FILES})
 
-# Link with the library
-target_link_libraries(${MODULE}_tests PRIVATE ${MODULE}_lib gtest)
+target_link_libraries(${MODULE}_tests PRIVATE utiles_lib gtest)

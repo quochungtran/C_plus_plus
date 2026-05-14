@@ -5,6 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+if(MSVC)
+    set(COMPILE_WARNS_FLAGS /W4 /WX)
+else()
+    set(COMPILE_WARNS_FLAGS -Wall -Wextra -Wpedantic)
+endif()
+
 # Make this a GUI application on Windows
 if(WIN32)
   set(CMAKE_WIN32_EXECUTABLE ON)

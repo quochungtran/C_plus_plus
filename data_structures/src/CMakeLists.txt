@@ -13,12 +13,10 @@ macro(SOURCE_BUILDER filename)
     # Set output name of the executable
     set_target_properties(${_target} PROPERTIES OUTPUT_NAME ${_target})
 
-    # Set compile flags conditionally
-    if(WIN32)
-        set_target_properties(${_target} PROPERTIES COMPILE_FLAGS "${COMPILE_WARNS_FLAGS}")
-    else()
-        set_target_properties(${_target} PROPERTIES COMPILE_FLAGS "-g ${COMPILE_WARNS_FLAGS}")
-    endif()
+    target_compile_options(${_target} PRIVATE
+        ${COMPILE_WARNS_FLAGS}
+        $<$<CONFIG:Debug>:-g>
+    )
 
     install(TARGETS ${_target} DESTINATION ${MODULE})
 
