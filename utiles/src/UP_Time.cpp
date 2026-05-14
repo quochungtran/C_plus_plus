@@ -11,11 +11,12 @@ UP_Time UP_Time::Now()
 
 std::string UP_Time::asString(const std::string& format) const{
     std::time_t timeT = std::chrono::system_clock::to_time_t(timePoint);
-    std::tm local_tm  = *std::localtime(&timeT);
+    std::tm local_tm{};
+    localtime_r(&timeT, &local_tm);
 
     char buffet[80];
     std::strftime(buffet, sizeof(buffet), format.c_str(), &local_tm);
-    return std::string(buffet); 
+    return std::string(buffet);
 }
 
 template <typename Duration>
