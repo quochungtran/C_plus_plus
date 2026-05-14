@@ -27,12 +27,15 @@ int main(){
 
     int counter = 0;
     std::thread t2(updateCounter, std::ref(counter));
-    
 
     auto p = std::make_unique<int>(99);
+
+    assert(p);
+
     std::thread t3(updatePtr, std::move(p));
     t1.join();
     t2.join();
     t3.join();
     LOG(LogLevel::INFO, counter);
+    assert(!p);
 }
