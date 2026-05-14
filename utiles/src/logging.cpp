@@ -1,4 +1,5 @@
 #include <iostream>
+#include <mutex>
 #include "UP_Time.h"
 #include "logging.h"
 
@@ -24,10 +25,12 @@ namespace {
 
 namespace utiles {
 void Logger::log(LogLevel level, const std::string& iMessage){
-        std::ostringstream logEntry;
-        logEntry << "[" << UP_Time::Now().asString() << "] " 
-                 << levelToString(level) << ": " << iMessage
-                 << std::endl;
-        std::cout << logEntry.str();
-    }
+    static std::mutex log_mutex;
+    std::ostringstream logEntry;
+    logEntry << "[" << UP_Time::Now().asString() << "] "
+             << levelToString(level) << ": " << iMessage
+             << std::endl;
+    std::lock_guard<std::mutex> lock(log_mutex);
+    std::cout << logEntry.str();
+}
 }
