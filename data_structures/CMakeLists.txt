@@ -8,6 +8,7 @@ SET(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/vector.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/array.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sharedPointer.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/scoped_thread.hpp
 )
 
 # Define a static library target with the given sources

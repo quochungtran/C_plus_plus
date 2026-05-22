@@ -7,6 +7,8 @@ macro(SOURCE_BUILDER filename)
 
     target_link_libraries(${_target} PRIVATE utiles_lib)
 
+    target_include_directories(${_target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
     target_compile_options(${_target} PRIVATE
         ${COMPILE_WARNS_FLAGS}
         $<$<CONFIG:Debug>:-g>
