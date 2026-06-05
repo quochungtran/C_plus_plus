@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
-project(Collection_algorithm_in_C++)
+project(CppLearning CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -11,24 +11,24 @@ else()
     set(COMPILE_WARNS_FLAGS -Wall -Wextra -Wpedantic)
 endif()
 
-# Make this a GUI application on Windows
-if(WIN32)
-  set(CMAKE_WIN32_EXECUTABLE ON)
-endif()
+enable_testing()
+include(CTest)
 
-if(CMAKE_VERSION VERSION_LESS "3.7.0")
-    set(CMAKE_INCLUDE_CURRENT_DIR ON)
-endif()
-
-
-# Turn on automatic invocation of the MOC, UIC & RCC
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
+# googletest must be added before any module that links against it
+add_subdirectory(lib/googletest)
 
 add_subdirectory(data_structures)
-add_subdirectory(competitve_programming)
 add_subdirectory(utiles)
-add_subdirectory(lib/googletest)
-add_subdirectory(flatbuffers)
-add_subdirectory(fbcache)
+
+# Optional modules — only built when the source directory exists
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/competitve_programming")
+    add_subdirectory(competitve_programming)
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/flatbuffers")
+    add_subdirectory(flatbuffers)
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/fbcache")
+    add_subdirectory(fbcache)
+endif()

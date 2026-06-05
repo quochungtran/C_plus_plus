@@ -1,68 +1,46 @@
 #pragma once
+
 #include <thread>
-#include <stdexcept>
 
-
+// RAII wrapper that joins on destruction — the C++20 std::jthread does the same.
+// Useful for understanding why jthread exists and what it replaces.
 class joining_thread {
-
-private:
-    std::thread t;
+    std::thread t_;
 
 public:
-    joining_thread() noexcept=default;
-    template<template Callable, typename ...Args>
-    explicit joining_thread(Callable&& func, Args&& ... args){
-        t(std::forward<Callable>(func), std::forward(args));
-    }
-    
-    joining_thread(std::thread other_t) {
-        t(std::move(other_t));
-    }
+    joining_thread() noexcept = default;
 
-    joining_thread(joining_thread&& other){
-        t(std::move(other.t));
-    }
+    template<typename Callable, typename... Args>
+    explicit joining_thread(Callable&& func, Args&&... args)
+        : t_(std::forward<Callable>(func), std::forward<Args>(args)...) {}
 
-    joining_thread& operator=(joining_thread&& other) {
-        if (joinable()){
-            join();
-        }
+    explicit joining_thread(std::thread t) noexcept : t_(std::move(t)) {}
 
-        t = std::move(other.t);
+    joining_thread(joining_thread&& other) noexcept : t_(std::move(other.t_)) {}
+
+    joining_thread& operator=(joining_thread&& other) noexcept {
+        if (joinable()) join();
+        t_ = std::move(other.t_);
         return *this;
     }
 
-    joining_thread& operator=(joining_thread other) {
-        if (joinable()){
-            join();
-        }
-
-        t = std::move(other.t);
+    joining_thread& operator=(std::thread t) noexcept {
+        if (joinable()) join();
+        t_ = std::move(t);
         return *this;
     }
 
-    joining_thread& operator=(std::thread other_t){
-        if (joinable()){
-            join();
-        }
-        
-        t = std::move(other_t);
-        return *this;
+    // The destructor is what makes this class useful: no forget-to-join bugs
+    ~joining_thread() {
+        if (joinable()) join();
     }
 
-    bool joinable(){
-        return t.joinable();
-    }
+    joining_thread(const joining_thread&) = delete;
+    joining_thread& operator=(const joining_thread&) = delete;
 
-    void join(){
-        t.join();
-    }
-
-    void detach(){
-        t.detach();
-    }
-
-    void swap(joining_thread& other) {
-        t.swap(other.t);
-    }
+    bool joinable() const { return t_.joinable(); }
+    void join() { t_.join(); }
+    void detach() { t_.detach(); }
+    void swap(joining_thread& other) noexcept { t_.swap(other.t_); }
+    std::thread::id get_id() const { return t_.get_id(); }
 };

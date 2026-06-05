@@ -1,26 +1,10 @@
-# List of source files for the data_structures_lib
 set(MODULE data_structures)
 
-SET(SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/node.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/stack.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/vector.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/array.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/sharedPointer.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/scoped_thread.hpp
-)
+# All data structures are header-only templates — use INTERFACE library
+add_library(${MODULE}_lib INTERFACE)
 
-# Define a static library target with the given sources
-add_library(${MODULE}_lib STATIC ${SOURCES})
+# Expose src/ so that test/ and any executable can #include headers directly
+target_include_directories(${MODULE}_lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# Make headers from src/ accessible to anything linking this library
-# for example they are able to be included in ./test 
-target_include_directories(${MODULE}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-# Add the src and test subdirectories to the build
-# This tells CMake to process the CMakeLists.txt files inside `src/` and `test/`
-# Each of those directories must contain their own CMakeLists.txt file
-# It's a way to modularize project: keep src logic and tests separate and clean
 add_subdirectory(src)
 add_subdirectory(test)

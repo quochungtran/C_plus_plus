@@ -13,7 +13,7 @@ public:
         }
     }
 
-    ~scoped_thread() {t_.join();}
+    ~scoped_thread() { if (t_.joinable()) t_.join(); }
 
     scoped_thread(const scoped_thread&) = delete;
     

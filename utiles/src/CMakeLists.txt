@@ -18,5 +18,5 @@ macro(SOURCE_BUILDER filename)
 
 endmacro()
 
-SOURCE_BUILDER(processMearsure_cli.cpp)
+SOURCE_BUILDER(processMeasure_cli.cpp)
 SOURCE_BUILDER(std_thread_cli.cpp)

@@ -1,60 +1,71 @@
+#pragma once
 
 #include <cstddef>
-#include <utility>
 #include <stdexcept>
+#include <utility>
 
-
-namespace data_structure{
+namespace data_structure {
 
 template <typename T, std::size_t N>
-class Array{
-
+class Array {
 public:
     Array() = default;
-    Array(T&& value);
+    explicit Array(const T& value);
 
-    void insert(int index, T&& value);
-    void remove(int index);
-    T& operator[](unsigned int index);
+    void insert(std::size_t index, T value);
+    void remove(std::size_t index);
+
+    T& operator[](std::size_t index);
+    const T& operator[](std::size_t index) const;
+
+    std::size_t size() const { return _currSize; }
+    static constexpr std::size_t capacity() { return N; }
 
 private:
-    T _buffer[N];
-    size_t _currSize = 0;
+    T _buffer[N]{};
+    std::size_t _currSize = 0;
 };
 
-template <typename T, size_t N>
-Array<T, N>::Array(T&& value){
-    for(int i = 0; i < N; i++){
-        _buffer[i] = std::forward<T>(value);
-    }
+template <typename T, std::size_t N>
+Array<T, N>::Array(const T& value) {
+    for (std::size_t i = 0; i < N; ++i)
+        _buffer[i] = value;
     _currSize = N;
 }
 
-template <typename T, size_t N>
-T& Array<T, N>::operator[](unsigned int index){
+template <typename T, std::size_t N>
+T& Array<T, N>::operator[](std::size_t index) {
+    if (index >= _currSize)
+        throw std::out_of_range("Array: index out of range");
     return _buffer[index];
 }
 
-template <typename T, size_t N>
-void Array<T, N>::insert(int index, T&& value){
-    if (_currSize >= N){
-        throw std::out_of_range("index out of range");
-    }
-
-    for (int i = _currSize - 1; i >= index; i--){
-        _buffer[i+1] = _buffer[i];
-    }
-    _buffer[index] = std::forward<T>(value);
-    _currSize += 1;
+template <typename T, std::size_t N>
+const T& Array<T, N>::operator[](std::size_t index) const {
+    if (index >= _currSize)
+        throw std::out_of_range("Array: index out of range");
+    return _buffer[index];
 }
 
-template <typename T, size_t N>
-void Array<T, N>::remove(int index){
-    for (int i = index; i <= N-2; i++){
-        _buffer[index] = _buffer[index+1];
-    }
-    _buffer[N-1] = 0;
-    _currSize -= 1;
+template <typename T, std::size_t N>
+void Array<T, N>::insert(std::size_t index, T value) {
+    if (_currSize >= N)
+        throw std::out_of_range("Array: full");
+    if (index > _currSize)
+        throw std::out_of_range("Array: index out of range");
+    for (std::size_t i = _currSize; i > index; --i)
+        _buffer[i] = std::move(_buffer[i - 1]);
+    _buffer[index] = std::move(value);
+    ++_currSize;
+}
+
+template <typename T, std::size_t N>
+void Array<T, N>::remove(std::size_t index) {
+    if (index >= _currSize)
+        throw std::out_of_range("Array: index out of range");
+    for (std::size_t i = index; i < _currSize - 1; ++i)
+        _buffer[i] = std::move(_buffer[i + 1]);   // was: _buffer[index] = _buffer[index+1] (bug)
+    _buffer[--_currSize] = T{};
 }
 
 } // namespace data_structure
