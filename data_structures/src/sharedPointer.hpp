@@ -18,6 +18,7 @@ template <typename T>
 class SharedPointer {
 public:
     explicit SharedPointer(T* ptr = nullptr);
+    
     ~SharedPointer();
 
     SharedPointer(const SharedPointer& other);

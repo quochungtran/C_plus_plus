@@ -26,7 +26,9 @@ public:
     void push(T value) {
         std::lock_guard<std::mutex> lk(mut_);
         queue_.push(std::move(value));
-        cond_.notify_one();
+        cond_.notify_one(); // wake up one thread that blocked in cond_.wait
+        // one thread waiting inside wait_and_pop(), such as when the new
+        // std::shared_ptr<> is constructed
     }
 
     // Blocks until an item is available, then moves it into value

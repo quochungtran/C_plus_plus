@@ -20,3 +20,4 @@ endmacro()
 
 SOURCE_BUILDER(processMeasure_cli.cpp)
 SOURCE_BUILDER(std_thread_cli.cpp)
+SOURCE_BUILDER(std_async_cli.cpp)
