@@ -14,3 +14,4 @@ macro(SOURCE_BUILDER filename)
 endmacro()
 
 SOURCE_BUILDER(main.cpp)
+SOURCE_BUILDER(threadSafe_lookupTable_benchmark_cli.cpp)

@@ -5,11 +5,13 @@ set(DS_TEST_FILES
     array_test.cpp
     vector_test.cpp
     node_test.cpp
+    list_test.cpp
     sharedPointer_test.cpp
     scoped_thread_test.cpp
     stack_test.cpp
     threadSafe_queue_test.cpp
     threadSafe_stack_test.cpp
+    threadSafe_lookupTable_test.cpp
 )
 
 add_executable(${MODULE}_tests ${DS_TEST_FILES})

@@ -9,7 +9,7 @@ template<typename T>
 class Stack {
 public:
     virtual ~Stack() = default;
-    virtual std::size_t getSize() const                        = 0;
+    virtual std::size_t getSize() const                  = 0;
     virtual bool isEmpty() const                               = 0;
     virtual void push(const T& value)                          = 0;
     virtual void push(T&& value)                               = 0;
